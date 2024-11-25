@@ -1,0 +1,13 @@
+/*-- scss:defaults --*/
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h1, h2 {
+    color: #333;
+  }
+  
+  a {
+    color: #0056b3;
+  }
+  

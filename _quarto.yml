@@ -1,0 +1,37 @@
+website:
+  title: "My Coursework Diary"
+  description: "A record of my day-to-day research activities."
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd  # This should point to the generated HTML file, not the .qmd
+      - text: Diary
+        href: daily_entry.qmd
+    right:
+      - text: "GitHub"
+        href: https://github.com/sijuswamyresearch/sijuswamyresearch
+project:
+  type: website
+  output-dir: docs
+
+  preview: 
+    port: 3848
+    browser: true
+    watch-inputs: true
+    navigate: true
+
+execute:
+  freeze: true
+
+format:
+  html:
+    fontsize: 1.1em
+    theme: 
+      - pulse
+      - styles.css
+    toc: false
+    code-link: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true

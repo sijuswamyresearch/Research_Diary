@@ -1,0 +1,27 @@
+---
+title: "End of First Semester - November 23, 2023"
+author: "Siju Swamy"
+date: "25 November,2024"
+format: html
+---
+
+# End of First Semester
+
+## Courses Completed
+- **24MA604 Computational Mathematics for Data Science**
+- **24DS601 Machine Learning**
+- **24RM801 Research Methodology for Engineering**
+
+### Reflections on the Semester
+It has been a challenging yet enriching semester, where I gained a strong foundation in Computational Mathematics, Machine Learning, and Research Methodology. Some key takeaways include:
+
+- **Computational Mathematics**: Developed a deeper understanding of mathematical concepts crucial for data science, including stochastic models and optimization techniques.
+- **Machine Learning**: Learned about various machine learning algorithms, their applications, and the importance of data preprocessing.
+- **Research Methodology**: Gained insights into the research process, including methodology, paper writing, and presentation skills.
+
+### Final Presentations and Viva-Voce
+The semester ended with course viva-voce, project presentations, and final exams. I presented my work on [Computational Linear Algebra](https://sijuswamy.github.io/ks_siju_CB.AI.R4CEN24003_Computational-Mathematics-for-DataScience/), where I demonstrated the progress and insights from the semester.
+
+---
+
+Looking forward to continuing the journey in the next semester, with new challenges and opportunities for growth.

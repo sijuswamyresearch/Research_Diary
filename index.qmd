@@ -1,0 +1,23 @@
+---
+title: "Welcome to My Coursework Diary"
+author: "Siju Swamy"
+date: "`r Sys.Date()`"
+format: html
+---
+
+# Introduction
+
+Welcome to my coursework diary. Here, I document my daily research activities, thoughts, and progress related to my research in Computational Engineering and Mathematics.
+
+## Objectives 
+- Keep track of daily research activities.
+- Share insights and reflections from my work.
+- Store resources and references for future use.
+
+## Recent Updates
+
+- **Date**: `r Sys.Date()`
+- **Research Focus**: Today, I worked on X and Y.
+
+For more details, please explore the different sections of this site.
+
