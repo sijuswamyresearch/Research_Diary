@@ -5,8 +5,10 @@ website:
     left:
       - text: "Home"
         href: index.qmd  # This should point to the generated HTML file, not the .qmd
-      - text: Diary
+      - text: "Diary"
         href: daily_entry.qmd
+      - text: "Literature Review"
+        href: PhD_Literature_survey.qmd
     right:
       - text: "GitHub"
         href: https://github.com/sijuswamyresearch/sijuswamyresearch
@@ -35,3 +37,4 @@ format:
     fig-cap-location: margin
     reference-location: margin
     footnotes-hover: true
+    bibliography: reference.bib  # Add this line to include the bibliography file
