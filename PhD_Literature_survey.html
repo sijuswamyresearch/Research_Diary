@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -167,7 +201,35 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#uncertainty-driven-loss-for-single-image-super-resolution" id="toc-uncertainty-driven-loss-for-single-image-super-resolution" class="nav-link active" data-scroll-target="#uncertainty-driven-loss-for-single-image-super-resolution">Uncertainty-Driven Loss for Single Image Super-Resolution</a>
+  <ul class="collapse">
+  <li><a href="#research-gap-identified-in-the-paper" id="toc-research-gap-identified-in-the-paper" class="nav-link" data-scroll-target="#research-gap-identified-in-the-paper">Research Gap Identified in the Paper</a></li>
+  <li><a href="#proposed-approach" id="toc-proposed-approach" class="nav-link" data-scroll-target="#proposed-approach">Proposed Approach</a></li>
+  <li><a href="#two-main-components-of-the-udl" id="toc-two-main-components-of-the-udl" class="nav-link" data-scroll-target="#two-main-components-of-the-udl">Two main components of the UDL</a></li>
+  <li><a href="#key-contributions-of-this-work" id="toc-key-contributions-of-this-work" class="nav-link" data-scroll-target="#key-contributions-of-this-work">Key contributions of this work</a></li>
+  <li><a href="#limitations-of-the-study" id="toc-limitations-of-the-study" class="nav-link" data-scroll-target="#limitations-of-the-study">Limitations of the Study</a></li>
+  <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future Work</a></li>
+  <li><a href="#review-summary" id="toc-review-summary" class="nav-link" data-scroll-target="#review-summary">Review Summary</a></li>
+  </ul></li>
+  <li><a href="#impact-of-different-loss-functions-on-denoising-microscopic-images" id="toc-impact-of-different-loss-functions-on-denoising-microscopic-images" class="nav-link" data-scroll-target="#impact-of-different-loss-functions-on-denoising-microscopic-images">Impact of Different Loss Functions on Denoising Microscopic Images</a>
+  <ul class="collapse">
+  <li><a href="#methodology-and-results" id="toc-methodology-and-results" class="nav-link" data-scroll-target="#methodology-and-results">Methodology and Results</a></li>
+  <li><a href="#limitations-and-future-directions" id="toc-limitations-and-future-directions" class="nav-link" data-scroll-target="#limitations-and-future-directions">Limitations and Future Directions</a></li>
+  </ul></li>
+  <li><a href="#deep-learning-based-inverse-scattering-with-structural-similarity-loss-functions" id="toc-deep-learning-based-inverse-scattering-with-structural-similarity-loss-functions" class="nav-link" data-scroll-target="#deep-learning-based-inverse-scattering-with-structural-similarity-loss-functions">Deep Learning-Based Inverse Scattering with Structural Similarity Loss Functions</a>
+  <ul class="collapse">
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  <li><a href="#evaluation-of-ssim-loss-function-in-rir-generator-gans" id="toc-evaluation-of-ssim-loss-function-in-rir-generator-gans" class="nav-link" data-scroll-target="#evaluation-of-ssim-loss-function-in-rir-generator-gans">Evaluation of SSIM loss function in RIR generator GANs</a></li>
+  <li><a href="#generative-adversarial-network-based-image-super-resolution-with-a-novel-quality-loss" id="toc-generative-adversarial-network-based-image-super-resolution-with-a-novel-quality-loss" class="nav-link" data-scroll-target="#generative-adversarial-network-based-image-super-resolution-with-a-novel-quality-loss">Generative Adversarial Network-based Image Super-Resolution with a Novel Quality Loss</a></li>
+  <li><a href="#g-loss-a-loss-function-with-gradient-information-for-super-resolution" id="toc-g-loss-a-loss-function-with-gradient-information-for-super-resolution" class="nav-link" data-scroll-target="#g-loss-a-loss-function-with-gradient-information-for-super-resolution">G-Loss: A loss function with gradient information for super-resolution</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -305,15 +367,732 @@ Figure&nbsp;1: Block diagram of UDL implementation
 <blockquote class="blockquote">
 <p>Ning, Q., Dong, W., Li, X., Wu, J., &amp; Shi, G. (2021). Uncertainty-Driven Loss for Single Image Super-Resolution. <em>35th Conference on Neural Information Processing Systems (NeurIPS 2021)</em></p>
 </blockquote>
-
-
-
 </section>
+</section>
+<section id="impact-of-different-loss-functions-on-denoising-microscopic-images" class="level1">
+<h1>Impact of Different Loss Functions on Denoising Microscopic Images</h1>
+<p><span class="citation" data-cites="shah2022impact">Shah et al. (<a href="#ref-shah2022impact" role="doc-biblioref">2022</a>)</span> identify that existing methods for SR-SIM image denoising primarily focus on Convolutional Neural Network (CNN) architecture while often overlooking the loss function’s importance. They argue that MSE/L2 loss, a standard choice, fails to adequately capture the structural and perceptual qualities necessary for accurate biological interpretation.</p>
+<p>To address this, they propose two novel loss function combinations:</p>
+<ol type="1">
+<li><p><strong>Dual Domain Mix (DDM) Loss:</strong> This loss combines the Fast Fourier Transform (FFT) loss with the Multi-Scale Structural Similarity Index (MS-SSIM) loss:</p>
+<p><span id="eq-lossDDM"><span class="math display">\[
+\text{Loss}_{DDM} = \alpha \cdot \text{Loss}_{FFT} + (1 - \alpha) \cdot (1 - MS\text{-}SSIM)
+\tag{8}\]</span></span></p>
+<p>The intuition is to leverage both frequency domain (FFT captures global structure) and spatial domain (MS-SSIM preserves local details and contrast) information.</p></li>
+<li><p><strong>Feature and Frequency Based Loss:</strong> This combines the FFT loss with the VGG loss:</p>
+<p><span class="math display">\[
+\text{Loss}_{(VGG+FFT)} = \alpha \cdot \text{Loss}_{FFT} + \text{Loss}_{VGG}
+\]</span>{$eq-feature-freq-loss}</p>
+<p>This approach combines global frequency information (FFT) with high-level perceptual features extracted by a pre-trained CNN (VGG).</p></li>
+</ol>
+<section id="methodology-and-results" class="level2">
+<h2 class="anchored" data-anchor-id="methodology-and-results">Methodology and Results</h2>
+<p>The authors employed a Residual Encoder-Decoder Network (RED-Net) and trained it from scratch with various loss functions, including their proposed DDM and Feature and Frequency Based losses. They used an SR-SIM dataset of U2OS cells and the Berkeley Segmentation Dataset (BSD500) for evaluation. Performance was assessed using Peak Signal-to-Noise Ratio (PSNR), Structural Similarity Index (SSIM), and Normalized Root Mean Square Error (NRMSE).</p>
+<p>Their key findings demonstrate that:</p>
+<ul>
+<li>The proposed DDM and Feature and Frequency Based losses outperform traditional loss functions (MSE/L2, Mix Loss, VGG-based losses) on both SR-SIM and BSD datasets.</li>
+<li>Visual results support the quantitative findings, showing improved preservation of cellular structures and reduced artifacts.</li>
+</ul>
+</section>
+<section id="limitations-and-future-directions" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-and-future-directions">Limitations and Future Directions</h2>
+<p>Shah et al.&nbsp;(2022) acknowledge limitations in their work, including:</p>
+<ul>
+<li>Lack of quantitative comparison of computational complexity.</li>
+<li>Empirical hyperparameter tuning with limited justification for the chosen values.</li>
+<li>Relatively small datasets.</li>
+<li>Absence of comparison to other state-of-the-art SR-SIM denoising methods.</li>
+</ul>
+<p>Building on this work, future research could explore:</p>
+<ul>
+<li>Adaptive loss weighting strategies to dynamically adjust the influence of different loss components.</li>
+<li>Alternative frequency domain representations beyond the FFT (e.g., wavelets).</li>
+<li>The use of learned loss functions trained with CNNs.</li>
+<li>Application of the proposed losses to other microscopy modalities.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Shah, Z.H., Müller, M., Hammer, B., Huser, T. and Schenck, W., 2022, July. Impact of different loss functions on denoising of microscopic images. In 2022 International Joint Conference on Neural Networks (IJCNN) (pp.&nbsp;1-10). IEEE.</p>
+</blockquote>
+</section>
+</section>
+<section id="deep-learning-based-inverse-scattering-with-structural-similarity-loss-functions" class="level1">
+<h1>Deep Learning-Based Inverse Scattering with Structural Similarity Loss Functions</h1>
+<p>The electromagnetic Inverse Scattering Problem (ISP) aims to determine the position, shape, and constitutive parameters (e.g., permittivity) of unknown scatterers from measured scattered fields. This problem is crucial in various applications, including biomedical imaging, geophysics, through-wall imaging, remote sensing, and non-destructive testing. It is highly challenging due to its inherent nonlinearity and ill-posed nature.</p>
+<p><em>Problems of traditional ISP approaches (Research Gap):</em> Traditional nonlinear Inverse Scattering Problem (ISP) methods, such as Distorted Born Iterative Method (DBIM), Contrast Source Inversion (CSI), and Subspace Optimization Method (SOM), often involve computationally expensive iterative optimization procedures. Their imaging quality also degrades significantly for complex cases with high nonlinearities.</p>
+<ul>
+<li><p>How do deep learning-based inverse scattering (DL-IS) methods address some of these limitations?</p>
+<p>Deep learning-based Inverse Scattering (DL-IS) methods offer a promising alternative by learning a direct mapping from measured scattered fields to reconstructed images using neural networks. This approach significantly improves imaging speed and quality compared to traditional iterative methods.</p></li>
+<li><p>What are the common loss functions used in DL-IS, and what are their limitations? Specifically, what aspect of the reconstructed images is not well-addressed by these loss functions?</p>
+<p>The common loss functions used in Deep Learning-Based Inverse Scattering (DL-IS) methods are Mean Squared Error (MSE) and Mean Absolute Error (MAE), which enforce a pixel-wise match between the reconstructed and reference images. However, these loss functions do not explicitly consider the structural features of the target, leading to artifacts and reduced perceptual quality.</p></li>
+<li><p>Is the identified research gap missing any other important citations?</p>
+<p>The identified research gap seems appropriate. The paper focuses on the importance of structural information which can’t be captured using MSE and MAE, and how the introduction of SSIM can enhance DL-IS methods.</p></li>
+</ul>
+<p><strong>2. Proposed Solution/Approach:</strong></p>
+<ul>
+<li><p>What is the main idea behind using a structural similarity (SSIM) loss function in DL-IS?</p>
+<p>The main idea is to incorporate perceptual information into the training process by using Structural Similarity (SSIM) that complements pixel-wise losses, improving the visual quality and reducing artifacts.</p></li>
+<li><p>How does SSIM complement the MSE loss function? What aspects of image quality does it capture that MSE does not?</p>
+<p>While Mean Squared Error (MSE) measures the average squared difference between pixel values, Structural Similarity (SSIM) assesses the perceptual distance between two images based on luminance, contrast, and structure. SSIM captures high level details which improves the quality of reconstructed image, and reduces artifacts.</p></li>
+<li><p>How do the authors integrate the SSIM loss into the training process of a deep neural network (U-Net) for inverse scattering?</p>
+<p>The authors construct a hybrid loss function consisting of a linear combination of the Mean Squared Error (MSE) loss and the Structural Similarity (SSIM) loss, allowing the network to simultaneously optimize for pixel-wise accuracy and perceptual similarity.</p></li>
+<li><p>What are the main steps of the proposed deep learning-based inverse scattering (DL-IS) method?</p>
+<p>The main steps are:</p>
+<ol type="1">
+<li><strong>Data Acquisition:</strong> Collect scattered field data from the target.</li>
+<li><strong>Rough Image Reconstruction:</strong> Use the backpropagation (BP) method to generate a rough image from scattered fields, thus mapping the scattered field to a coarse input image (using a fast, linear inversion method).</li>
+<li><strong>Image Enhancement:</strong> Input the rough image into a U-Net CNN for quality enhancement and artifact reduction.</li>
+<li><strong>Network Training:</strong> The U-Net is trained by optimizing a hybrid loss function to match the network output with the reference target image.</li>
+</ol></li>
+<li><p>How are the training datasets constructed for the proposed method? What are the key parameters and settings for the training process?</p>
+<p>The training datasets are constructed using:</p>
+<ul>
+<li><strong>Synthetic Data:</strong> The handwritten digits in Mixed National Institute of Standards and Technology database (MNIST) with randomly rotated digits and a circle added to the region of interest as scatterers.</li>
+<li><strong>Experimental Data:</strong> A “FoamDielExt” profile from the Fresnel dataset is used.</li>
+</ul></li>
+</ul>
+<p><strong>3. Methodology:</strong></p>
+<ul>
+<li><p>What are the different components in the proposed method? Specifically, how do they use backpropagation (BP) and the U-Net CNN in their approach?</p>
+<p>The key components are:</p>
+<ul>
+<li><strong>Backpropagation (BP) Method:</strong> A fast linear inversion method used to generate a rough image from scattered field data. This provides an initial estimate of the target.</li>
+<li><strong>U-Net CNN:</strong> A deep learning network used to enhance the rough image generated by the Backpropagation (BP) method. This extracts features and refines the image to match the reference target.</li>
+</ul></li>
+<li><p>Explain the data pre-processing steps. How is the input image generated? What are its characteristics?</p>
+<p>A rough estimate from the scattered data was obtained using BP method. It is known that BP reconstruction will be distorted for strong scatterers, or those with high contrast/electrically large size.</p></li>
+<li><p>Describe the architecture and key features of the U-Net CNN used in the proposed method. What is the role of skip connections?</p>
+<p>The U-Net consists of an encoding branch (feature extraction) and a decoding branch (image reconstruction). Skip connections concatenate feature maps from the encoding branch with corresponding feature maps in the decoding branch. This enables to capture finer details.</p></li>
+<li><p>Explain the formulation of the hybrid loss function, including the MSE and SSIM components and the weighting parameter α.</p>
+<p>The hybrid loss function is formulated as a linear combination of Mean Squared Error (MSE) and Structural Similarity (SSIM) losses:</p></li>
+</ul>
+<p><span id="eq-hybrid-loss"><span class="math display">\[
+L_{full}(\hat{y}, y) = L_{mse}(\hat{y}, y) + \alpha L_{ssim} (\hat{y}, y)
+\tag{9}\]</span></span></p>
+<p>Where <span class="math inline">\(L_{mse}\)</span> is defined as:</p>
+<p><span id="eq-mseloss"><span class="math display">\[
+L_{mse}=\dfrac{1}{W\times H}\sum\limits_{i=1}^W\sum\limits_{j=1}^H\left(\hat{y}_{i,j}-y_{i,j}\right)^2
+\tag{10}\]</span></span></p>
+<p>and the SSIM loss is:</p>
+<p><span id="eq-SSIMloss"><span class="math display">\[
+\begin{align*}
+L_{ssim}&amp;=1-SSIM(\hat{y},y)\\
+        &amp;=1-\dfrac{(2\mu_{y\hat{y}}\mu_y+C_1)(2\sigma_{\hat{y}y}+C_2)}{(\mu^2_{\hat{y}}+\mu^2_y+C_1)(\sigma^2_{\hat{y}}+\sigma^2_y+C_2)}
+\end{align*}
+\tag{11}\]</span></span></p>
+<ul>
+<li><p>Describe the experimental setup, including the types of data used for training and testing (synthetic data, experimental data), the parameters of the simulation, and the evaluation metrics.</p>
+<ul>
+<li><strong>Training Data:</strong> Used two types of datasets Synthetic (MNIST data, FoamDielExt profile) and real/experimental (“Austria” profile).</li>
+<li><strong>Simulation Parameters:</strong> Frequency is set to 400 MHz, the domain of interest is discretized into 100x100 grids for simulation and the Adam optimization method was used.</li>
+<li><strong>Evaluation Metrics:</strong> The performance evaluation was performed using the Structural Similarity (SSIM) index and the Root Mean Squared Error (RMSE).</li>
+</ul></li>
+</ul>
+<p><strong>4. Key Findings/Contributions:</strong></p>
+<ul>
+<li><p>What are the main findings from the numerical tests with synthetic data? How does the SSIM loss affect the reconstruction results?</p>
+<p>The numerical tests demonstrate that incorporating the Structural Similarity (SSIM) loss improves the reconstruction results compared to using only the Mean Squared Error (MSE) loss, leading to better imaging quality.</p></li>
+<li><p>What are the main findings from the experimental data? How does the proposed method compare to traditional methods (SOM) in terms of reconstruction quality and computational cost?</p>
+<p>Using Fresnel experimental data (“FoamDielExt” profile), the proposed method achieves better imaging quality compared to the BP method. While Subspace Optimization Method (SOM) yields good generalization capabilities, its reconstruction performance is worse than the proposed method and the BP method is computationally more costly.</p></li>
+<li><p>How do the authors evaluate the performance of the method? Do the visual results align with the quantitative results?</p>
+<p>Performance is evaluated using the Structural Similarity (SSIM) index and the Root Mean Squared Error (RMSE). Visual results demonstrate that the proposed approach has the best reconstruction performance compared to other methods, which aligns with the quantitative data.</p></li>
+<li><p>What are the key contributions of this work, according to the authors?</p>
+<p>The key contributions are:</p>
+<ul>
+<li>Introduction of a Structural Similarity (SSIM) loss function for Deep Learning-Based Inverse Scattering (DL-IS).</li>
+<li>Demonstration of improved imaging quality and generalization capability with the proposed approach.</li>
+<li>Comparison of the approach with traditional and other Deep Learning Based methods.</li>
+</ul></li>
+<li><p>What is the computational complexity of the new approach and how does that compare to existing state of the art approach?</p>
+<p>The proposed BP+U-net based method with MSE and SSIM combined losses achieves similar reconstruction quality to existing algorithms with reduced time and complexity. The run time is significantly lower for the BP+U-net based approach (0.716 seconds) than the SOM method (39.370 seconds).</p></li>
+</ul>
+<p><strong>5. Limitations:</strong></p>
+<ul>
+<li><p>What are the limitations of the proposed approach, as acknowledged by the authors or apparent from your analysis?</p>
+<p>The experimental set up uses a relative simple 2D geometry and more complex 3D geometries and materials were not investigated. A full exploration of the trade-off between time and reconstruction accuracy is also missing.</p></li>
+<li><p>Are there any potential biases in the datasets or evaluation metrics used?</p>
+<p>The numerical tests uses simple test sets of digits (MNIST) which does not represent typical experimental samples. The Structural Similarity (SSIM) metric and Root Mean Squared Error (RMSE) may not be sufficient to fully capture the reconstruction quality and resolution.</p></li>
+<li><p>What are the potential scalability issues with this method? To what kind of targets (size, complexity, material properties) does it apply?</p>
+<p>As the method is DL based, it may suffer from scalability issues associated with the size of the CNN model.</p></li>
+<li><p>What is the generalization capabilility of the approach under different noise levels and types?</p>
+<p>The “Austria Profile” was used as a test with various noise levels and demonstrate the generalization capability under different noise settings.</p></li>
+</ul>
+<p><strong>6. Future Research Directions:</strong></p>
+<ul>
+<li><p>What future research directions do the authors suggest based on their findings?</p>
+<p>The authors do not directly suggest specific future research directions beyond improving the reconstruction quality of Deep Learning Based Inverse Scattering (DL-IS) methods.</p></li>
+<li><p>What other potential avenues for future research could build upon this work?</p>
+<ol type="1">
+<li>Using more advanced datasets and experimental setups.</li>
+<li>Performing investigations on other differentiable perceptual metrics to construct other loss functions.</li>
+<li>Applying proposed methods to more complicated set ups.</li>
+<li>Using alternative deep learning frameworks.</li>
+</ol></li>
+</ul>
+<p><strong>7. Implications:</strong></p>
+<ul>
+<li><p>What are the potential practical implications of this research for improving electromagnetic imaging techniques?</p>
+<p>The research has the potential to improve the quality and interpretability of electromagnetic images, which could lead to more accurate diagnoses in medical imaging, more reliable assessments in non-destructive testing, and improved situational awareness in through-wall imaging.</p></li>
+<li><p>How could the proposed method be applied to real-world scenarios, such as medical imaging, non-destructive testing, or through-wall imaging?</p>
+<p>The proposed method could be applied to:</p>
+<ul>
+<li>Medical Imaging: Enhancing the resolution and clarity of medical images obtained through techniques like Electrical Impedance Tomography (EIT) or microwave imaging for improved disease detection and monitoring.</li>
+<li>Non-Destructive Testing: Improving the detection and characterization of defects in materials and structures using microwave or millimeter-wave imaging.</li>
+<li>Through-Wall Imaging: Enhancing the ability to detect and identify objects behind walls or other obstacles using radar or microwave imaging techniques.</li>
+</ul></li>
+</ul>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p><span class="citation" data-cites="huang2020deep">Huang et al. (<a href="#ref-huang2020deep" role="doc-biblioref">2020</a>)</span> addressed the challenge of enhancing image quality in deep learning-based inverse scattering (DL-IS) methods, noting that traditional pixel-wise loss functions like Mean Squared Error (MSE) fail to capture crucial structural information. To overcome this limitation, the authors proposed a novel approach incorporating a Structural Similarity (SSIM) loss function into the training process. Their method leverages a U-Net Convolutional Neural Network (CNN) to map a rough initial image, obtained via the backpropagation (BP) method, to a high-resolution reconstruction.</p>
+<p>The core of their approach lies in the hybrid loss function, defined as:</p>
+<p><span id="eq-hybrid-loss"><span class="math display">\[
+L_{full}(\hat{y}, y) = L_{mse}(\hat{y}, y) + \alpha L_{ssim} (\hat{y}, y)
+\tag{12}\]</span></span></p>
+<p>Where <span class="math inline">\(L_{mse}\)</span> is defined as:</p>
+<p><span id="eq-mseloss"><span class="math display">\[
+L_{mse}=\dfrac{1}{W\times H}\sum\limits_{i=1}^W\sum\limits_{j=1}^H\left(\hat{y}_{i,j}-y_{i,j}\right)^2
+\tag{13}\]</span></span></p>
+<p>and the SSIM loss is:</p>
+<p><span id="eq-SSIMloss"><span class="math display">\[
+\begin{align*}
+L_{ssim}&amp;=1-SSIM(\hat{y},y)\\
+        &amp;=1-\dfrac{(2\mu_{y\hat{y}}\mu_y+C_1)(2\sigma_{\hat{y}y}+C_2)}{(\mu^2_{\hat{y}}+\mu^2_y+C_1)(\sigma^2_{\hat{y}}+\sigma^2_y+C_2)}
+\end{align*}
+\tag{14}\]</span></span></p>
+<p><span class="math inline">\(C_1=(K_1\mathcal{L})^2\)</span>, <span class="math inline">\(C_2=(K_2\mathcal{L})^2\)</span> are two small constants used to keep the denominator non-zero and <span class="math inline">\(K_1\)</span> and <span class="math inline">\(K_2\)</span> are hyper parameters. <span class="math inline">\(\mathcal{L}\)</span> is the dynamic range of pixel values of the target variable <span class="math inline">\(y\)</span>. (In this paper authors use <span class="math inline">\(K_1=0.01, K_2=0.03\)</span>).</p>
+<p>In their work, the authors applied the SSIM loss on patches of images. The full size image is divided into <span class="math inline">\(N_p\)</span> patches with each patch occupying <span class="math inline">\(M\times M\)</span> pixels. So the loss function defined for the full image is given by:</p>
+<p><span id="eq-full-loss"><span class="math display">\[
+L_{\text{full}}=\sum\limits_{j=1}^{N_p} L_{mse}(\hat{y}_j,y_j)+\alpha L_{\text{ssim}}(\hat{y}_j,y_j)
+\tag{15}\]</span></span></p>
+<p>Numerical tests using both synthetic (MNIST digits) and experimental (“FoamDielExt” profile) data demonstrated the effectiveness of their method. The results showed that incorporating the Structural Similarity (SSIM) loss improved imaging quality compared to using Mean Squared Error (MSE) alone and offered a better performance than traditional methods. For experimental data, the method showed very promising results but was also outperformed by traditional optimization in some cases.</p>
+<p><span class="citation" data-cites="huang2020deep">Huang et al. (<a href="#ref-huang2020deep" role="doc-biblioref">2020</a>)</span> demonstrated that the developed technique improved reconstruction quality and helped to alleviate the artifacts, but they acknowledge that their work is preliminary and focuses only on relatively basic geometries and material properties. Nonetheless, this work illustrates the value of perceptual loss functions and gives insight on how to enhance Deep Learning Based Inverse Scattering (DL-IS) techniques.</p>
+<blockquote class="blockquote">
+<p>Huang, Y., Song, R., Xu, K., Ye, X., Li, C. and Chen, X., 2020. Deep learning-based inverse scattering with structural similarity loss functions. IEEE Sensors Journal, 21(4), pp.4900-4907.</p>
+</blockquote>
+</section>
+</section>
+<section id="evaluation-of-ssim-loss-function-in-rir-generator-gans" class="level1">
+<h1>Evaluation of SSIM loss function in RIR generator GANs</h1>
+<p><span class="citation" data-cites="pekmezci2024evaluation">Pekmezci and Genc (<a href="#ref-pekmezci2024evaluation" role="doc-biblioref">2024</a>)</span> explore the potential of integrating the structural similarity (SSIM) as a loss function within generative adversarial networks (GANs) to enhance the generation of room impulse responses (RIRs). The study addresses the problem of glitches appearing in RIRs generated by neural network-based methods, which can lead to audible distortions. The authors hypothesize that incorporating structural information into the GAN training process can mitigate these artifacts. To this end, they explore the use of the SSIM index as a loss function, either alone or in combination with Mean Squared Error (MSE), within the generator networks of FAST-RIR and MESH2IR architectures.</p>
+<p>The authors note the limitations of existing methods for RIR generation, which include ray-based methods (computationally inexpensive but producing poor quality RIRs), wave-based methods (computationally expensive), and statistical methods, particularly those using GANs (offering a better balance between complexity and quality, but prone to glitches). They select MESH2IR and FAST-RIR as candidates for enhancement because neural network-based RIR generators can have a better trade-off between complexity/quality, and because glitches are introduced into RIRs generated.</p>
+<p>The authors construct a hybrid loss function consisting of a linear combination of the MSE loss and the SSIM loss, allowing the network to simultaneously optimize for pixel-wise accuracy and perceptual similarity.</p>
+<p>The hybrid loss function is defined as <span id="eq-loss1"><span class="math display">\[
+L_{1} = 1 - \text{ssim}(RIR_{real}, RIR_{fake})
+\tag{16}\]</span></span></p>
+<p><span id="eq-loss2"><span class="math display">\[
+L_{2} = 1 - \text{ssim}(\text{mfcc}(RIR_{real}), \text{mfcc}(RIR_{fake}))
+\tag{17}\]</span></span></p>
+<p>The first loss function L1 uses structural similarity as a distance to compare the real and fake images. The second used is applied to Mel-Frequency Cepstral Coefficents.</p>
+<p>For testing, the authors used GTU-RIR dataset which is a real dataset of RIRs collected in 11 rooms of Gebze Technical University, with various microphone and loudspeaker placements. They also used the BUT ReverbDB, a publicly available dataset of real RIRs. Experiments were conducted using synthetic (GTU-RIR) and collected data (BUT ReverbDB),.</p>
+<p>The implementation of the combined loss functions, the design choices for FAST-RIR and MESH2IR , data collection of the GTU-RIR, and the testing methodology are adequately described for reproducibility. However, there are limited details surrounding the hyperparamter tuning, evaluation metrics, and other network specifications. The values should depend on the specific application and/or model, and that an investigation of the model may be a viable area for research.</p>
+<p>Key findings indicated that training the GANs with a combined SSIM + MSE loss function resulted in RIRs with fewer glitches, lower MSE values, and higher SSIM values.</p>
+<p>The authors acknowledge that there are several limits with the proposed approach. First, the model has only been tested in 2D. Second, there can be other differentiable perceptual metrics. The geometric mesh data is very limited (6500 room meshes) in the current training dataset, as the authors say that they aim to improve this metric.</p>
+<p>Overall, the article makes a substantial contribution, and shows the benefits of modeling Structural Similarity (SSIM). It is expected that the use of the SSIM+MSE loss function can provide significant improvements in this setting.</p>
+</section>
+<section id="generative-adversarial-network-based-image-super-resolution-with-a-novel-quality-loss" class="level1">
+<h1>Generative Adversarial Network-based Image Super-Resolution with a Novel Quality Loss</h1>
+<p>Xining Zhu, Lin Zhang, Lijun Zhang, Xiao Liu, Ying Shen, and Shengjie Zhao (2019) addressed the challenge of generating perceptually realistic high-resolution (HR) images from low-resolution (LR) counterparts using Generative Adversarial Networks (GANs) for single image super-resolution (SISR). They observed that existing deep learning-based methods often rely on Mean Squared Error (MSE), which doesn’t correlate well with human visual perception and can lead to artifacts. Additionally, GANs can suffer from training instability.</p>
+<p>To address these issues, the authors proposed a new method named Gradient Map Generative Adversarial Network (GMGAN). Their approach integrates a quality loss term derived from the Gradient Magnitude Similarity Deviation (GMSD), an Image Quality Assessment (IQA) metric that better aligns with human visual perception. Furthermore, they employ a variation of GANs called Wasserstein GAN with Gradient Penalty (WGAN-GP) to improve training stability.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exploration Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The proposed loss function is explored in the context of the gradient map of an image. A gradient map represents the spatial variations in pixel intensity values, indicating the direction and strength of changes. It highlights the edges and textures in an image, which are areas with rapid intensity changes.</p>
+<p>The gradient of an image is a vector that points in the direction of the steepest intensity increase. It is defined as:</p>
+<p><span class="math display">\[
+G(x,y) = \left( \frac{\partial I}{\partial x}, \frac{\partial I}{\partial y} \right)
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(I(x,y)\)</span> is the image intensity at point <span class="math inline">\((x,y)\)</span>.</li>
+<li><span class="math inline">\(\frac{\partial I}{\partial x}\)</span> is the gradient in the horizontal direction.</li>
+<li><span class="math inline">\(\frac{\partial I}{\partial y}\)</span> is the gradient in the vertical direction.</li>
+</ul>
+<p>The magnitude of the gradient is given by:</p>
+<p><span class="math display">\[
+| G(x,y) | = \sqrt{ \left( \frac{\partial I}{\partial x} \right)^2 + \left( \frac{\partial I}{\partial y} \right)^2 }
+\]</span></p>
+<p>The gradient direction is computed as:</p>
+<p><span class="math display">\[
+\theta(x,y) = \tan^{-1}\left( \frac{\frac{\partial I}{\partial y}}{\frac{\partial I}{\partial x}} \right)
+\]</span></p>
+<p>The gradient can be approximated using convolution with Sobel filters:</p>
+<p><span class="math display">\[
+G_x = \begin{bmatrix} -1 &amp; 0 &amp; 1 \\ -2 &amp; 0 &amp; 2 \\ -1 &amp; 0 &amp; 1 \end{bmatrix}, \quad G_y = \begin{bmatrix} -1 &amp; -2 &amp; -1 \\ 0 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 1 \end{bmatrix}
+\]</span></p>
+<p>These filters approximate the image derivatives and help capture the horizontal and vertical edge structures. In conclusion, the gradient of an image can be computed as: <span class="math display">\[
+|G(x, y)| = \sqrt{ (I(x, y) \oplus G_x)^2+ (I(x, y) \oplus G_y)^2}
+\]</span></p>
+<p>Where <span class="math inline">\(\oplus\)</span> denotes the convolution operator, and <span class="math inline">\(G_x\)</span> and <span class="math inline">\(G_y\)</span> are the Sobel filters:</p>
+<p>The Sobel filter is essentially learning a first-order derivative — it captures how pixel intensities change across space.In smooth regions (little change in intensity), the gradient is small (a low response value). At edges (sharp changes in intensity), the gradient is large (a higher response value).The central weighting (with values like 2) emphasizes pixels closer to the center, reducing the impact of noise and distant outliers.</p>
+<p>Another filter for edge detection is Perwitte filter. It just take the average of the differences. Gradient in <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> direction using the Perwitte filter is given by:</p>
+<p><span class="math display">\[
+h_x = \begin{bmatrix} -1 &amp; 0 &amp; 1 \\ -1 &amp; 0 &amp; 1 \\ -1 &amp; 0 &amp; 1 \end{bmatrix}, \quad h_y = \begin{bmatrix} -1 &amp; -1 &amp; -1 \\ 0 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 1 \end{bmatrix}
+\]</span></p>
+<p>In this paper, authors used this filter to compute gradient.</p>
+<p>A comparison of the Sobel and the Prewitt fiters is given below:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 39%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aspect</strong></th>
+<th><strong>Prewitt</strong></th>
+<th><strong>Sobel</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Kernel Weights</strong></td>
+<td>Equal weights in each direction</td>
+<td>Larger weights near the center</td>
+</tr>
+<tr class="even">
+<td><strong>Edge Sensitivity</strong></td>
+<td>Lower sensitivity to edges</td>
+<td>Higher sensitivity to edges</td>
+</tr>
+<tr class="odd">
+<td><strong>Noise Sensitivity</strong></td>
+<td>Lower sensitivity to noise</td>
+<td>Higher (but more accurate)</td>
+</tr>
+<tr class="even">
+<td><strong>Computation Cost</strong></td>
+<td>Slightly faster</td>
+<td>Slightly more expensive</td>
+</tr>
+<tr class="odd">
+<td><strong>Best Use Case</strong></td>
+<td>Quick, rough edge detection</td>
+<td>Strong, accurate edge detection</td>
+</tr>
+</tbody>
+</table>
+<p>In image denoising task, the Sobel filter combined with a GMSD loss could preserve important edge structures while smoothing noise.</p>
+</div>
+</div>
+<p>The gradient magnitude similarity deviation (GMSD) metric is calculated using the following equations. The gradient magnitudes of the SR and real images are:</p>
+<p><span id="eq-MSR"><span class="math display">\[
+M_{SR}(i) = \sqrt{(I_{SR} \otimes h_{x})^2(i) + (I_{SR} \otimes h_{y})^2(i)}
+\tag{18}\]</span></span></p>
+<p><span id="eq-MHR"><span class="math display">\[
+M_{HR}(i) = \sqrt{(I_{HR} \otimes h_{x})^2(i) + (I_{HR} \otimes h_{y})^2(i)}
+\tag{19}\]</span></span></p>
+<p>The gradient magnitude similarity (GMS) map is computed as:</p>
+<p><span id="eq-GMS"><span class="math display">\[
+GMS(i) = \frac{2M_{SR}(i) \cdot M_{HR}(i) + C}{M_{SR}^2(i) + M_{HR}^2(i) + C}
+\tag{20}\]</span></span></p>
+<p>To estimate the image overall quality of the Local Quality Map (LQM), an average pooling strategy is applied to the GMS map (a context specific approach to calculate the mean) as follows:</p>
+<p><span id="eq-GMSM"><span class="math display">\[
+GMSM = \frac{1}{N} \sum_{i=1}^{N} GMS(i)
+\tag{21}\]</span></span></p>
+<p>To estimate the variation in image overall quality, the root mean square difference between the GMS map and the mean GMS is defined as:</p>
+<p><span id="eq-GMSD"><span class="math display">\[
+GMSD = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (GMS(i)-GMSM)^2}
+\tag{22}\]</span></span></p>
+<p>To estimate the image overall quality, the root mean square difference between the GMS map and the mean GMS is defined as the <em>quality loss</em>:</p>
+<p><span id="eq-LQM"><span class="math display">\[
+l_{Q} = GMSD((G_e(I_{LR})), (I_{HR}))
+\tag{23}\]</span></span></p>
+<p>To stabilize training and produce better quality images, the complete function for generator G used for training is:</p>
+<p><span id="eq-loss"><span class="math display">\[
+\text{Loss}_{G} = \text{Loss}_{MSE} + l_p + l_Q + l_{A}
+\tag{24}\]</span></span></p>
+<p>Where <span class="math inline">\(l_p\)</span> is the perceptual loss and <span class="math inline">\(l_{A}\)</span> is the adverserial loss.</p>
+<p>The generator for GMGAN is different from the SRGAN. To combine both advantages of the multi-level residual network and dense connections, authors replaced the original residual block with Residual-in-Residual Dense Block (RRDB). Inspired by the Enhanced Deep Super-Resolution Network (EDSR), they removed Batch Normalization (BN) layers to reduce computational complexity and memory usage.</p>
+<p>The architecture of the discriminator was that of Stacked Generative Adversarial Networks (SRGAN). To address training instability, they used a WGAN-GP variation of GANs.</p>
+<p>For training, the authors used the DF2K dataset. Testing was performed on Set5, Set14 and BSD100 datasets, the benchmark test dataset.</p>
+<p>The experiments show that GMGAN performs better or the same. Specifically, the technique creates high quality images with fewer artifacts.</p>
+<p><span class="citation" data-cites="zhu2019generative">Zhu et al. (<a href="#ref-zhu2019generative" role="doc-biblioref">2019</a>)</span> demonstrate a novel approach to combining deep learning and Generative Adversarial Networks (GANs) for single image super-resolution. While the proposed method exhibits promising results, additional research is needed to address the limitations and explore the future directions outlined in this review.</p>
+<p>A comparison of the advantages GMSD loss and hybrid loss is shown in the following table.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 36%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aspect</strong></th>
+<th><strong>Hybrid Loss (MSE + SSIM + Sobel)</strong></th>
+<th><strong>GMSD Loss (from GMGAN)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Edge Preservation</strong></td>
+<td>✅ Strong (via Sobel)</td>
+<td>✅✅ Strong (via gradient magnitude)</td>
+</tr>
+<tr class="even">
+<td><strong>Texture Fidelity</strong></td>
+<td>❌ Weaker (SSIM misses fine textures)</td>
+<td>✅ Captures local variations in small structures</td>
+</tr>
+<tr class="odd">
+<td><strong>Perceptual Quality</strong></td>
+<td>✅ Moderate (SSIM helps, but not perfect)</td>
+<td>✅✅ High (aligned to human vision via gradient maps)</td>
+</tr>
+<tr class="even">
+<td><strong>Noise Sensitivity</strong></td>
+<td>❌ Sobel amplifies noise</td>
+<td>✅ More stable (smooths out noise deviations)</td>
+</tr>
+<tr class="odd">
+<td><strong>Computational Cost</strong></td>
+<td>✅ Moderate</td>
+<td>❌ Higher (gradient maps + standard deviation)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Observations:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A weighted hybrid total loss (<span class="math inline">\(\mathcal{L}_{total}=\alpha \mathcal{L}_{MSE}+\beta \mathcal{L}_{SSIM}+\gamma \mathcal{L}_{Sobel}\)</span>) makes perfect sense, especially for X-ray image denoising, where preserving sharp edges (like bones or small fractures) is critical. By tuning the weights, one can decide how much importance to give to pixel accuracy, perceptual structure, and edge preservation. Use of <span class="math inline">\(\mathcal{L}_{GMSD}\)</span> (<span class="math inline">\(\mathcal{l}_Q\)</span> in this paper) instead of the <span class="math inline">\(\mathcal{L}_{sobel}\)</span> is a better alternative for better edge informed denoising.</p>
+<p><strong>Justification for the selected loss functions:</strong></p>
+<p><em>Edges are Critical:</em> X-ray images rely on sharp boundaries for medical diagnosis (e.g., fractures, tumors). <span class="math inline">\(\mathcal{L}_{MSE}\)</span> address this aspect.</p>
+<p><em>Smooth Backgrounds:</em> Large flat regions should be denoised aggressively. <span class="math inline">\(\mathcal{L}_{sobel}\)</span> address this aspect.</p>
+<p><em>Perceptual Quality:</em> Doctors need images that make anatomical structures intuitively clear. <span class="math inline">\(\mathcal{L}_{SSIM}\)</span> address this aspect.</p>
+</div>
+</div>
+</section>
+<section id="g-loss-a-loss-function-with-gradient-information-for-super-resolution" class="level1">
+<h1>G-Loss: A loss function with gradient information for super-resolution</h1>
+<p><span class="citation" data-cites="ge2023g">Ge and Dou (<a href="#ref-ge2023g" role="doc-biblioref">2023</a>)</span> tackle the challenge of jointly improving Peak Signal-to-Noise Ratio (PSNR) and perceptual quality in single image super-resolution (SISR). Traditional pixel-wise losses like Mean Squared Error (MSE) tend to yield higher PSNR, while perceptual losses prioritize perceptual quality, making it difficult to optimize both simultaneously. The authors propose G-Loss, a novel loss function incorporating gradient information to achieve a better balance.</p>
+<p>The central idea is that gradient information is an effective image feature for super-resolution as it is sensitive to lines, edges and textures. Specifically, they use a Total Variation (TV) loss function as a feature of images to remove noise and sharpen edges. Then, the authors propose to extract gradient feature and incorporate it into loss function to solve the challenge of maintaining a balance between PSNR and perceptual quality. In this paper, the authors propose a new loss function called G-Loss to better extract gradient information. G-Loss is inspired by perceptual loss functions which stores sufficient information. In addition, the authors propose a novel method that calculates gradient information with several downsampling methods. In this paper, several kinds of techniques to extract the gradient information from the image are compared, and their advantages and disadvantages are discussed. The proposed strategy’s effectiveness is confirmed by experiments, and its impact on perceptual quality and Peak Signal-to-Noise Ratio (PSNR) is verified by experiments.</p>
+<p>G-Loss is composed of several terms. First, they extract the gradient feature maps of HR and SR images, which are named <span class="math inline">\(L_{AG}\)</span>, <span class="math inline">\(L_{MG}\)</span>, and <span class="math inline">\(L_{SG}\)</span>, respectively.</p>
+<p><span id="eq-LAG"><span class="math display">\[
+L_{AG} = L_G(\text{AveragePooling}(I), \text{AveragePooling}(\hat{I}))
+\tag{25}\]</span></span></p>
+<p><span id="eq-LMG"><span class="math display">\[
+L_{MG} = L_G(\text{MaxPooling}(I), \text{MaxPooling}(\hat{I}))
+\tag{26}\]</span></span></p>
+<p><span id="eq-LSG"><span class="math display">\[
+L_{SG} = L_G(\text{Splitting}(I), \text{Splitting}(\hat{I}))
+\tag{27}\]</span></span></p>
+<p>The total loss that is obtained is defined as G-Loss, as written in the paper, and is defined as the sum of the losses obtained in above formulations:</p>
+<p><span class="math display">\[
+fSR(X) \xrightarrow{PixelLoss} fHR(x) fSR(x) +f'SR(x) \xrightarrow{G-Loss} fHR(X) +f'HR(X)
+\]</span></p>
+<p><span class="math inline">\(fSR(x)\)</span>: The super resolution image</p>
+<p><span class="math inline">\(fHR(X)\)</span>: The real image</p>
+<p>“G-Loss could constrain the output to approximate <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(f'(x)\)</span> simultaneously.” The authors present this idea as a way to think about the gradient.</p>
+<p>To verify the effectiveness of G-Loss, the authors modify the loss function of EDSR and analyze the most suitable G-Loss in different situations. The data is based on EDSR trained by DIV2K with 300 epochs.</p>
+<p>The quantitative results show that proposed G-Loss exhibits gains in PSNR and Image Quality, and the gains were better than traditional metrics.</p>
+<p>Several limits have been determined in the proposed method. As the method has only been tested in 2D the performance may be poor with full 3D data. Also, as the datasets used during testing are small (BSD100) it’s hard to assess the performance in other setups.</p>
+<p>This work presents a novel technique for improving the performance and perceptual quality of SR models, and that the findings may help in other domains.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Total variation and eigen values of gradient matrix of an image
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Total Variation loss function is commonly used in image processing tasks like denoising, inpainting, and image reconstruction. It measures the amount of fine-scale variation (or noise) in an image by calculating the sum of the absolute differences between neighboring pixel values.</p>
+<p>For an image <span class="math inline">\(I\)</span> , the TV loss is defined as:</p>
+<p><span class="math display">\[
+TV(I)=\sum\limits_{i,j} |I_{i+1,j}-I_{i,j}|+|I_{i,j+1}-I_{i,j}|
+\]</span></p>
+<p>The TV loss (total absolute gradient) encourages smoothness in the image by penalizing large variations between neighboring pixels and it is often used as a regularization term in optimization problems to preserve edges while reducing noise.</p>
+<p>If we treat an image as a set of pixel values, we can compute the covariance matrix of the pixel intensities. The eigenvalues of this matrix represent the variance (or spread) of the pixel values along different directions (eigenvectors). Whereas in the graph-based image processing, the Laplacian matrix represents the connectivity of pixels. Its eigenvalues describe the smoothness or roughness of the image. In short both <span class="math inline">\(L_2\)</span> norm (the total squared gradient) and eigen values of the gradient matrix capture same information! Precisely, eigenvalues of the Laplacian or gradient operator can be used to decompose the image into its frequency components. High eigenvalues correspond to high-frequency components, which are penalized by the TV loss.</p>
+<p>To approximate the <span class="math inline">\(L_2\)</span> norm of the gradient of an image using eigenvalues follow these steps:</p>
+<ul>
+<li><p>Step 1: Compute the gradient matrix, <span class="math inline">\(G\)</span> of the image.</p></li>
+<li><p>Step 2: Compute the eigenvalues of <span class="math inline">\(\mathcal{L}=G^TG\)</span> (the Laplacian matrix).</p></li>
+<li><p>Step 3: The sum of the absolute values of the eigenvalues of <span class="math inline">\(G^TG\)</span> is related to the <span class="math inline">\(L_2\)</span> norm. In image denoising or reconstruction, we can use this connection to design algorithms that balance smoothness (via <span class="math inline">\(L_2\)</span> norm) and spectral properties (via eigenvalues).</p></li>
+</ul>
+</div>
+</div>
+<p>Relationship between the <span class="math inline">\(L_1\)</span> norm, <span class="math inline">\(L_2\)</span> norm and eigen values of the gradient matrix of an image can be computationally verified as follows:</p>
+<div id="9ef6202d" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> eigvalsh</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage <span class="im">import</span> data, filters</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a sample image (e.g., grayscale)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> data.camera().astype(np.float32) <span class="op">/</span> <span class="fl">255.0</span>  <span class="co"># Normalize to [0, 1]</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the image</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Original Image"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the gradient of the image using Sobel filters</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>grad_x <span class="op">=</span> filters.sobel_v(image)  <span class="co"># Gradient in the x-direction</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>grad_y <span class="op">=</span> filters.sobel_h(image)  <span class="co"># Gradient in the y-direction</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the Total Variation (TV) loss (L1 norm of gradients)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>tv_loss <span class="op">=</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(grad_x)) <span class="op">+</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(grad_y))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total Variation (TV) Loss (L1 norm): </span><span class="sc">{</span>tv_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the squared gradient (L2 norm of gradients)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>squared_grad <span class="op">=</span> np.<span class="bu">sum</span>(grad_x<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> np.<span class="bu">sum</span>(grad_y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Squared Gradient (L2 norm): </span><span class="sc">{</span>squared_grad<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the gradient matrix G</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># For simplicity, we'll treat the gradient as a flattened vector</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>grad_matrix <span class="op">=</span> np.vstack((grad_x.flatten(), grad_y.flatten())).T  <span class="co"># Shape: (N, 2), where N = H * W</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the Laplacian matrix L = G^T G</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>laplacian_matrix <span class="op">=</span> np.dot(grad_matrix.T, grad_matrix)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the eigenvalues of the Laplacian matrix</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>eigenvalues <span class="op">=</span> eigvalsh(laplacian_matrix)  <span class="co"># Eigenvalues are sorted in ascending order</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the eigenvalues</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.plot(eigenvalues, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Eigenvalues of the Laplacian Matrix"</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Index"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Eigenvalue"</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum of eigenvalues (should be equal to the squared gradient)</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>sum_eigenvalues <span class="op">=</span> np.<span class="bu">sum</span>(eigenvalues)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sum of eigenvalues: </span><span class="sc">{</span>sum_eigenvalues<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Squared Gradient (L2 norm): </span><span class="sc">{</span>squared_grad<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Relationship: Sum of eigenvalues = Squared Gradient (L2 norm)</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a mathematical identity: trace(G^T G) = sum of eigenvalues = sum of squared gradients</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="PhD_Literature_survey_files/figure-html/cell-2-output-1.png" class="figure-img" width="620" height="624"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total Variation (TV) Loss (L1 norm): 15798.7725
+Squared Gradient (L2 norm): 2522.1221</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="PhD_Literature_survey_files/figure-html/cell-2-output-3.png" class="figure-img" width="676" height="376"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sum of eigenvalues: 2522.1226
+Squared Gradient (L2 norm): 2522.1221</code></pre>
+</div>
+</div>
+<p>It is important to note that <span class="math inline">\(L_1\)</span> norm is same as the TV and <span class="math inline">\(L_2\)</span> norm is the sum of eigen values of the gradient matrix of an image.</p>
+<p>Following computational example demonstrate how the absolute value of gradient preserve edge information.</p>
+<div id="b41b75ef" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage <span class="im">import</span> data, filters</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a sample image (e.g., grayscale)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> data.camera().astype(np.float32) <span class="op">/</span> <span class="fl">255.0</span>  <span class="co"># Normalize to [0, 1]</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the image</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Original Image"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the gradient of the image using Sobel filters</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>grad_x <span class="op">=</span> filters.sobel_v(image)  <span class="co"># Gradient in the x-direction</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>grad_y <span class="op">=</span> filters.sobel_h(image)  <span class="co"># Gradient in the y-direction</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the Total Variation (TV) loss (L1 norm of gradients)</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>tv_loss <span class="op">=</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(grad_x)) <span class="op">+</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(grad_y))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total Variation (TV) Loss (L1 norm): </span><span class="sc">{</span>tv_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the L2 norm of the gradient (sum of squared gradients)</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>l2_norm_grad <span class="op">=</span> np.<span class="bu">sum</span>(grad_x<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> np.<span class="bu">sum</span>(grad_y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L2 Norm of Gradient: </span><span class="sc">{</span>l2_norm_grad<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the gradients</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.<span class="bu">abs</span>(grad_x), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Absolute Gradient (X-direction)"</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.<span class="bu">abs</span>(grad_y), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Absolute Gradient (Y-direction)"</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.<span class="bu">abs</span>(grad_x)<span class="op">+</span>np.<span class="bu">abs</span>(grad_y), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"L_1 norm"</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Gradients of the Image"</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="PhD_Literature_survey_files/figure-html/cell-3-output-1.png" class="figure-img" width="620" height="624"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total Variation (TV) Loss (L1 norm): 15798.7725
+L2 Norm of Gradient: 2522.1221</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="PhD_Literature_survey_files/figure-html/cell-3-output-3.png" class="figure-img" width="960" height="528"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Following example demonstrate the effect of <span class="math inline">\(L_2\)</span> norm on noisy image.</p>
+<div id="e2b51457" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage <span class="im">import</span> data, filters</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a sample image (e.g., grayscale)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> data.camera().astype(np.float32) <span class="op">/</span> <span class="fl">255.0</span>  <span class="co"># Normalize to [0, 1]</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add some noise to the image</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>noisy_image <span class="op">=</span> image <span class="op">+</span> <span class="fl">0.1</span> <span class="op">*</span> np.random.randn(<span class="op">*</span>image.shape)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>noisy_image <span class="op">=</span> np.clip(noisy_image, <span class="dv">0</span>, <span class="dv">1</span>)  <span class="co"># Clip to valid range [0, 1]</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute gradients of the noisy image</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>grad_x <span class="op">=</span> filters.sobel_v(noisy_image)  <span class="co"># Gradient in the x-direction</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>grad_y <span class="op">=</span> filters.sobel_h(noisy_image)  <span class="co"># Gradient in the y-direction</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute TV loss (L1 norm of gradients)</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>tv_loss <span class="op">=</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(grad_x)) <span class="op">+</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(grad_y))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute L2 loss (squared gradients)</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>l2_loss <span class="op">=</span> np.<span class="bu">sum</span>(grad_x<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> np.<span class="bu">sum</span>(grad_y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"TV Loss (L1 norm): </span><span class="sc">{</span>tv_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L2 Loss: </span><span class="sc">{</span>l2_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the results</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>plt.imshow(noisy_image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Noisy Image"</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>plt.imshow((grad_x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> grad_y<span class="op">**</span><span class="dv">2</span>), cmap<span class="op">=</span><span class="st">'gray'</span>)  <span class="co"># Gradient magnitude</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Gradient Magnitude"</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Effect of  L2 Loss on noisy image"</span>)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>TV Loss (L1 norm): 41072.4116
+L2 Loss: 5959.4522</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="PhD_Literature_survey_files/figure-html/cell-4-output-2.png" class="figure-img" width="939" height="528"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(L_2\)</span> norm (sum of squared variation) is displayed. This highlights the edges and noise in the image. This image is related to the <span class="math inline">\(L_2\)</span> norm.</p>
+<p>Key points related to TV loss and <span class="math inline">\(L_2\)</span> loss and their practical use cases are given below.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key points:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 39%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aspect</strong></th>
+<th><strong>TV Loss (L1 Norm)</strong></th>
+<th><strong>L2 Loss (Squared Gradient)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mathematical Form</strong></td>
+<td>Sum of absolute gradients</td>
+<td>Sum of squared gradients</td>
+</tr>
+<tr class="even">
+<td><strong>Sensitivity to Edges</strong></td>
+<td>Preserves edges (less sensitive to outliers)</td>
+<td>Oversmooths edges (more sensitive to outliers)</td>
+</tr>
+<tr class="odd">
+<td><strong>Smoothness</strong></td>
+<td>Encourages piecewise smoothness</td>
+<td>Encourages global smoothness</td>
+</tr>
+<tr class="even">
+<td><strong>Use Cases</strong></td>
+<td>Denoising, inpainting, edge-preserving tasks</td>
+<td>Image smoothing, regularization</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-ge2023g" class="csl-entry" role="listitem">
+Ge, Lei, and Lei Dou. 2023. <span>“G-Loss: A Loss Function with Gradient Information for Super-Resolution.”</span> <em>Optik</em> 280: 170750.
+</div>
+<div id="ref-huang2020deep" class="csl-entry" role="listitem">
+Huang, Youyou, Rencheng Song, Kuiwen Xu, Xiuzhu Ye, Chang Li, and Xun Chen. 2020. <span>“Deep Learning-Based Inverse Scattering with Structural Similarity Loss Functions.”</span> <em>IEEE Sensors Journal</em> 21 (4): 4900–4907.
+</div>
 <div id="ref-ning2021uncertainty" class="csl-entry" role="listitem">
 Ning, Qian, Weisheng Dong, Xin Li, Jinjian Wu, and Guangming Shi. 2021. <span>“Uncertainty-Driven Loss for Single Image Super-Resolution.”</span> <em>Advances in Neural Information Processing Systems</em> 34: 16398–409.
+</div>
+<div id="ref-pekmezci2024evaluation" class="csl-entry" role="listitem">
+Pekmezci, Mehmet, and Yakup Genc. 2024. <span>“Evaluation of SSIM Loss Function in RIR Generator GANs.”</span> <em>Digital Signal Processing</em> 154: 104685.
+</div>
+<div id="ref-shah2022impact" class="csl-entry" role="listitem">
+Shah, Zafran Hussain, Marcel Müller, Barbara Hammer, Thomas Huser, and Wolfram Schenck. 2022. <span>“Impact of Different Loss Functions on Denoising of Microscopic Images.”</span> In <em>2022 International Joint Conference on Neural Networks (IJCNN)</em>, 1–10. IEEE.
+</div>
+<div id="ref-zhu2019generative" class="csl-entry" role="listitem">
+Zhu, Xining, Lin Zhang, Lijun Zhang, Xiao Liu, Ying Shen, and Shengjie Zhao. 2019. <span>“Generative Adversarial Network-Based Image Super-Resolution with a Novel Quality Loss.”</span> In <em>2019 International Symposium on Intelligent Signal Processing and Communication Systems (ISPACS)</em>, 1–2. IEEE.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -408,7 +1187,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/sijuswamyresearch\.github\.io\/Research_Diary\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

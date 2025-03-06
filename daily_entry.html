@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -118,7 +118,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#end-of-first-semester" id="toc-end-of-first-semester" class="nav-link active" data-scroll-target="#end-of-first-semester">End of First Semester</a>
+  <ul class="collapse">
+  <li><a href="#courses-completed" id="toc-courses-completed" class="nav-link" data-scroll-target="#courses-completed">Courses Completed</a>
+  <ul class="collapse">
+  <li><a href="#reflections-on-the-semester" id="toc-reflections-on-the-semester" class="nav-link" data-scroll-target="#reflections-on-the-semester">Reflections on the Semester</a></li>
+  <li><a href="#final-presentations-and-viva-voce" id="toc-final-presentations-and-viva-voce" class="nav-link" data-scroll-target="#final-presentations-and-viva-voce">Final Presentations and Viva-Voce</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -275,7 +290,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/sijuswamyresearch\.github\.io\/Research_Diary\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
